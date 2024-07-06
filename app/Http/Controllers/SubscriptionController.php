@@ -114,4 +114,13 @@ class SubscriptionController extends Controller
         return redirect()->route('subscriptions.index')->with('success', 'Subscription invalidated successfully.');
     }
 
+    public function deleteExpired()
+    {
+        $expiredSubscriptions = Subscription::where('end_date', '<', now())->get();
+        foreach ($expiredSubscriptions as $subscription) {
+            $subscription->delete();
+        }
+
+        return redirect()->route('subscriptions.index')->with('success', 'Expired subscriptions deleted successfully.');
+    }
 }

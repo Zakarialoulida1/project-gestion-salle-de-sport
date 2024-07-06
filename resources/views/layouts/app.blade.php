@@ -16,13 +16,13 @@
             <div class="flex justify-between items-center py-4">
                 <a href="{{ route('dashboard') }}" class="text-2xl font-semibold text-black">Gym Manager</a>
                 <ul class="flex space-x-4">
-                    <li><a href="{{ route('dashboard') }}" class="text-xl text-black">Dashboard</a></li>
+                    <li><a href="{{ route('dashboard') }}" class=" text-black">Dashboard</a></li>
                     @auth('member')
                         @if (Auth::guard('member')->user()->role === 'admin')
-                            <li><a href="{{ route('members.index') }}" class="text-white">Members</a></li>
-                            <li><a href="{{ route('subscriptions.index') }}" class="text-white">Subscriptions</a></li>
-                            <li><a href="{{ route('courses.index') }}" class="text-white">Courses</a></li>
-                            <li><a href="{{ route('reservations.index') }}" class="text-white">Reservations</a></li>
+                            <li><a href="{{ route('members.index') }}" class="text-black">Members</a></li>
+                            <li><a href="{{ route('subscriptions.index') }}" class="text-black">Subscriptions</a></li>
+                            <li><a href="{{ route('courses.index') }}" class="text-black">Courses</a></li>
+                            <li><a href="{{ route('reservations.index') }}" class="text-black">Reservations</a></li>
                         @endif
                     @endauth
                 </ul>

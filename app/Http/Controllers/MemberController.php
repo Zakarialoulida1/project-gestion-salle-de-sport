@@ -65,7 +65,12 @@ public function update(Request $request, Member $member)
 
 public function destroy(Member $member)
 {
+    // Supprimer toutes les réservations associées
+    $member->reservations()->delete();
+
+    // Ensuite, supprimer le membre
     $member->delete();
+
     return redirect()->route('members.index')->with('success', 'Member deleted successfully.');
 }
 

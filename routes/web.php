@@ -37,6 +37,7 @@ Route::middleware(['auth.member'])->group(function () {
         Route::get('subscriptions/{subscription}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
         Route::put('subscriptions/{subscription}', [SubscriptionController::class, 'update'])->name('subscriptions.update');
         Route::delete('subscriptions/{subscription}', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
+        Route::post('/subscriptions/deleteExpired', [SubscriptionController::class, 'deleteExpired'])->name('subscriptions.deleteExpired');
 
         // Routes pour les réservations
         Route::get('reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');

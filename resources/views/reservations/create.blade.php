@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
+    <div class="max-w-md mx-auto bg-white mt-12 p-8 rounded shadow-md">
         <h1 class="text-2xl font-semibold mb-4">Create Reservation</h1>
         <form action="{{ route('reservations.store') }}" method="POST">
             @csrf
