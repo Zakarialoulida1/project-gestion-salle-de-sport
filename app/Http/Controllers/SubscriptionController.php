@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Subscription;
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -23,26 +24,26 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'member_id' => 'required|exists:members,id',
+            'member_id' => 'required|exists:users,id',
             'start_date' => 'required|date',
             'number_of_months' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
-        // Check if subscription already exists
-        $existingSubscription = Subscription::where('member_id', $request->member_id)
-          
+    if(Auth::user()->role =='member'){
+        $existingSubscription = Subscription::where('user_id', $request->member_id)
+            
             ->first();
 
         if ($existingSubscription) {
             return redirect()->route('dashboard')->with('error', 'Subscription already exists.');
         }
-
+    }
         // Calculate end date based on start date and number of months
         $endDate = date('Y-m-d', strtotime($request->start_date . ' + ' . $request->number_of_months . ' months'));
 
         Subscription::create([
-            'member_id' => $request->member_id,
+            'user_id' => $request->member_id,
             'start_date' => $request->start_date,
             'end_date' => $endDate,
             'status' => 'notvalid', // Default status
@@ -67,14 +68,14 @@ class SubscriptionController extends Controller
     public function update(Request $request, Subscription $subscription)
     {
         $request->validate([
-            'member_id' => 'required|exists:members,id',
+            
             'start_date' => 'required|date',
             'number_of_months' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
         // Check if subscription already exists
-        $existingSubscription = Subscription::where('member_id', $request->member_id)
+        $existingSubscription = Subscription::where('user_id', $request->member_id)
             ->where('start_date', $request->start_date)
             ->where('id', '!=', $subscription->id) // Exclude the current subscription being updated
             ->first();
@@ -87,7 +88,7 @@ class SubscriptionController extends Controller
         $endDate = date('Y-m-d', strtotime($request->start_date . ' + ' . $request->number_of_months . ' months'));
 
         $subscription->update([
-            'member_id' => $request->member_id,
+          
             'start_date' => $request->start_date,
             'end_date' => $endDate,
             'price' => $request->price,

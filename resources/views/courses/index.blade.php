@@ -33,7 +33,9 @@
                         @endif
                     </td>
                     <td class="py-2 px-4">{{ $course->name }}</td>
-                    <td class="py-2 px-4">{{ $course->description }}</td>
+                  
+                    <td class="py-2 px-4">{{ \Illuminate\Support\Str::limit($course->description, 50) }}</td>
+                    
                     <td class="py-2 px-4">{{ $course->start_time }}</td>
                     <td class="py-2 px-4">{{ $course->end_time }}</td>
                     <td class="py-2 px-4">{{ $course->instructor }}</td>

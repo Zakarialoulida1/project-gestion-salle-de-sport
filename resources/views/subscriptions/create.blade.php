@@ -11,7 +11,7 @@
             @csrf
 
             <div class="mb-4">
-                <input type="hidden" name="member_id" value="{{ Auth::guard('member')->id() }}">
+                <input type="hidden" name="member_id" value="{{ Auth()->user()->id }}">
     
             </div>
 
@@ -57,23 +57,22 @@
 
             number_of_months.addEventListener('change', function () {
                 const months = parseInt(this.value);
-                let basePrice = 100; // Example base price
+                let basePrice = 100; 
                 let discount = '';
 
                 if (months > 3 && months <= 6) {
-                    priceInput.value = (basePrice * months * 0.9).toFixed(2); // 10% discount for 4 to 6 months
+                    priceInput.value = (basePrice * months * 0.9).toFixed(2); 
                     discount = '10% discount applied.';
                 } else if (months > 6) {
-                    priceInput.value = (basePrice * months * 0.8).toFixed(2); // 20% discount for more than 6 months
+                    priceInput.value = (basePrice * months * 0.8).toFixed(2); 
                     discount = '20% discount applied.';
                 } else {
-                    priceInput.value = (basePrice * months).toFixed(2); // No discount for 1 to 3 months
+                    priceInput.value = (basePrice * months).toFixed(2);
                     discount = 'No discount applied.';
                 }
 
                 discountMessage.textContent = discount;
 
-                // Additional text based on the discount logic
                 if (months > 3) {
                     discountText.textContent = 'You receive a discount because you subscribed for more than 3 months.';
                 } else {

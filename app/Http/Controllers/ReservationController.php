@@ -25,7 +25,7 @@ class ReservationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'member_id' => 'required|exists:members,id',
+            'member_id' => 'required|exists:users,id',
             'course_id' => 'required|exists:courses,id',
             'reservation_date' => 'required|date',
         ]);
@@ -60,26 +60,29 @@ class ReservationController extends Controller
     public function update(Request $request, Reservation $reservation)
     {
         $request->validate([
-            'member_id' => 'required|exists:members,id',
             'course_id' => 'required|exists:courses,id',
             'reservation_date' => 'required|date',
         ]);
-
+    
         // Check if reservation already exists
-        $existingReservation = Reservation::where('member_id', $request->member_id)
+        $existingReservation = Reservation::where('member_id', $reservation->member_id)
             ->where('course_id', $request->course_id)
             ->where('reservation_date', $request->reservation_date)
             ->where('id', '!=', $reservation->id) // Exclude the current reservation being updated
             ->first();
-
+    
         if ($existingReservation) {
             return redirect()->route('reservations.index')->with('error', 'Reservation already exists.');
         }
-
-        $reservation->update($request->all());
-
+    
+        $reservation->update([
+            'course_id' => $request->course_id,
+            'reservation_date' => $request->reservation_date,
+        ]);
+    
         return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
     }
+    
 
     public function destroy(Reservation $reservation)
     {

@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-between items-center p-4 mb-4">
         <h1 class="text-2xl font-semibold">Members</h1>
-        <a href="{{ route('members.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Member</a>
+        {{-- <a href="{{ route('members.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Member</a> --}}
     </div>
     @if (session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4">
@@ -19,6 +19,8 @@
                 <th class="py-2 px-4">Actions</th>
             </tr>
         </thead>
+
+        //hhhhhhhhhhhhd
         <tbody>
             @foreach ($members as $member)
                 <tr class="border-b">
@@ -26,8 +28,8 @@
                     <td class="py-2 px-4">{{ $member->email }}</td>
                     <td class="py-2 px-4">{{ $member->role }}</td>
                     <td class="py-2 px-4">
-                        <a href="{{ route('members.show', $member) }}" class="text-blue-500">View</a>
-                        <a href="{{ route('members.edit', $member) }}" class="text-yellow-500 ml-2">Edit</a>
+                        {{-- <a href="{{ route('members.show', $member) }}" class="text-blue-500">View</a>
+                        <a href="{{ route('members.edit', $member) }}" class="text-yellow-500 ml-2">Edit</a> --}}
                         <form action="{{ route('members.destroy', $member) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')

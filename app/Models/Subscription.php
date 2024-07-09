@@ -9,10 +9,10 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['member_id', 'type', 'start_date', 'end_date', 'status', 'price', 'number_of_months'];
+    protected $fillable = ['user_id', 'type', 'start_date', 'end_date', 'status', 'price', 'number_of_months'];
 
     public function member()
     {
-        return $this->belongsTo(Member::class);
+        return $this->belongsTo(Member::class,'user_id');
     }
 }

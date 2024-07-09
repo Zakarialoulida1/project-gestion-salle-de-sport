@@ -6,7 +6,7 @@
         <form action="{{ route('reservations.store') }}" method="POST">
             @csrf
             <div class="mb-4">
-                <input type="hidden" name="member_id" value="{{ Auth::guard('member')->id() }}">
+                <input type="hidden" name="member_id" value="{{ Auth()->user()->id }}">
     
             </div>
 

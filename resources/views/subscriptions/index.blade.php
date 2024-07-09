@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-between items-center p-4 mb-4">
         <h1 class="text-2xl font-semibold">Subscriptions</h1>
-        <a href="{{ route('subscriptions.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Subscription</a>
+        {{-- <a href="{{ route('subscriptions.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Subscription</a> --}}
         <form action="{{ route('subscriptions.deleteExpired') }}" method="POST" class="inline">
             @csrf
             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Delete Expired Subscriptions</button>

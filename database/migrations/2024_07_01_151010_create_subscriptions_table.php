@@ -10,8 +10,7 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained()->onDelete('cascade');
-         
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('status', ['valid', 'notvalid'])->default('notvalid');

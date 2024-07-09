@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-between items-center p-4 mb-4">
         <h1 class="text-2xl font-semibold">Reservations</h1>
-        <a href="{{ route('reservations.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Reservation</a>
+        {{-- <a href="{{ route('reservations.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Create New Reservation</a> --}}
     </div>
     @if (session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4">

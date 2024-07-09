@@ -12,7 +12,7 @@
     {{ session('error') }}
 </div>
 @endif
-<div class="mb-8  shadow-lg relative" style="background-image: url('{{ asset('storage/images/bgfront.png') }}');opacity:80%;  background-size: cover; background-position: center; height: 100vh;">
+<div class="mb-8  shadow-lg relative" style="background-image: url('{{ asset('storage/images/gym.png') }}');opacity:80%;  background-size: cover; background-position: center; height: 100vh;">
     <div class="absolute inset-x-0 bottom-44 flex justify-center  my-auto mx-auto text-md md:text-7xl md:w-[40vw] text-bold text-black">
         <h1 class="text-center"> REJOIGNEZ LE LEADER DU FITNESS
             AU MAROC</h1>
